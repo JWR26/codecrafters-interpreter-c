@@ -47,6 +47,8 @@ void scan_tokens(const char *source)
         t->lexeme = source;
         t->length = 1;
 
+        print_token(t);
+
         source++;
     }
 }
