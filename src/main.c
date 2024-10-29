@@ -2,7 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "scanner.h"
+
 char *read_file_contents(const char *filename);
+
 
 int main(int argc, char *argv[]) {
     // Disable output buffering
