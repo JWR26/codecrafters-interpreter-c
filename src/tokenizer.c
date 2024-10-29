@@ -17,6 +17,18 @@ enum TokenType get_token_type(const char c)
         return LEFT_BRACE;
     case '}':
         return RIGHT_BRACE;
+    case ',':
+        return COMMA;
+    case '.':
+        return DOT;
+    case '-':
+        return MINUS;
+    case '+':
+        return PLUS;
+    case ';':
+        return SEMICOLON;
+    case '*':
+        return STAR;
     default:
         break;
     }
@@ -33,7 +45,18 @@ const char* token_type_as_string(const enum TokenType type){
         return "LEFT_BRACE";
     case RIGHT_BRACE:
         return "RIGHT_BRACE";
-    
+    case COMMA:
+        return "COMMA";
+    case DOT:
+        return "DOT";
+    case MINUS:
+        return "MINUS";
+    case PLUS:
+        return "PLUS";
+    case SEMICOLON:
+        return "SEMICOLON";
+    case STAR:
+        return "STAR";
     default:
         break;
     }
