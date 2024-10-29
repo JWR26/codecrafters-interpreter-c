@@ -9,6 +9,8 @@ enum TokenType{
     // Character tokens
     LEFT_PAREN,
     RIGHT_PAREN,
+    LEFT_BRACE,
+    RIGHT_BRACE,
 };
 
 
