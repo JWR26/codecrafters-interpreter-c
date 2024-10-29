@@ -14,8 +14,8 @@ enum TokenType{
 // opaque type to discourage acces of token properties
 typedef struct Token{
     enum TokenType type;
-    char *lexeme; // cosnt pointer to first character of the lexeme
-    char lieteral;
+    char *lexeme; // const pointer to first character of the lexeme
+    char *lieteral;
     int length; // length of the lexeme defaults to single character
 } Token;
 
