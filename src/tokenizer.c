@@ -77,7 +77,7 @@ void print_token(const Token *t)
     }
 }
 
-int scan_tokens(const char *source)
+int scan_tokens(char *source)
 {
     while(*source)
     {
