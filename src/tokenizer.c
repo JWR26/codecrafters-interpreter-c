@@ -38,7 +38,7 @@ void print_token(const Token *t)
     printf(" ");
     for(int i = 0; i < t->length; ++i)
     {
-        printf(t->lexeme[i]);
+        printf("%c", t->lexeme[i]);
     }
     printf(" ");
     if (t->lieteral == NULL)
