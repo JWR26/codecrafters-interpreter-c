@@ -35,7 +35,7 @@ const char* token_type_as_string(const enum TokenType type){
 void print_token(const Token *t)
 {
     printf(token_type_as_string(t->type));
-    printf(' ');
+    print(" ");
     printf(t->lexeme);
 }
 
