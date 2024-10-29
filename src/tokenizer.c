@@ -13,7 +13,10 @@ enum TokenType get_token_type(const char c)
         return LEFT_PAREN;
     case ')':
         return RIGHT_PAREN;
-    
+    case '{':
+        return LEFT_BRACE;
+    case '}':
+        return RIGHT_BRACE;
     default:
         break;
     }
@@ -26,6 +29,10 @@ const char* token_type_as_string(const enum TokenType type){
         return "LEFT_PAREN";
     case RIGHT_PAREN:
         return "RIGHT_PAREN";
+    case LEFT_BRACE:
+        return "LEFT_BRACE";
+    case RIGHT_BRACE:
+        return "RIGHT_BRACE";
     
     default:
         break;
