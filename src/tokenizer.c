@@ -77,7 +77,7 @@ void print_token(const Token *t)
     }
 }
 
-void scan_tokens(const char *source)
+int scan_tokens(const char *source)
 {
     while(*source)
     {
@@ -92,4 +92,7 @@ void scan_tokens(const char *source)
 
         source++;
     }
+
+    printf("EOF  null\n");
+    return 0;
 }

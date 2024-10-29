@@ -34,6 +34,6 @@ enum TokenType get_token_type(const char c);
 
 void print_token(const Token *t);
 
-void scan_tokens(const char *source);
+int scan_tokens(const char *source);
 
 #endif

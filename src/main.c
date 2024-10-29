@@ -17,6 +17,8 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
+    int exit_code = 0;
+
     const char *command = argv[1];
 
     if (strcmp(command, "tokenize") == 0) {
@@ -27,17 +29,16 @@ int main(int argc, char *argv[]) {
 
         // Uncomment this block to pass the first stage
         if (strlen(file_contents) > 0) {
-            scan_tokens(file_contents);
+            exit_code = scan_tokens(file_contents);
         } 
-        printf("EOF  null\n"); // Placeholder, remove this line when implementing the scanner
-        
+
         free(file_contents);
     } else {
         fprintf(stderr, "Unknown command: %s\n", command);
         return 1;
     }
 
-    return 0;
+    return exit_code;
 }
 
 char *read_file_contents(const char *filename) {
