@@ -36,7 +36,7 @@ void print_token(const Token *t)
 {
     printf(token_type_as_string(t->type));
     printf(" ");
-    printf(*t->lexeme);
+    puts(*t->lexeme);
     printf(" ");
     if (t->lieteral == NULL)
     {
