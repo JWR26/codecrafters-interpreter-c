@@ -2,7 +2,7 @@
 
 Token *create_token(void)
 {
-    return calloc(1, sizeof(Token));
+    return malloc(sizeof(Token));
 }
 
 enum TokenType get_token_type(const char c)
