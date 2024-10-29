@@ -17,6 +17,8 @@ enum TokenType{
     PLUS,
     SEMICOLON,
     STAR,
+
+    ERROR,
 };
 
 

@@ -30,7 +30,7 @@ enum TokenType get_token_type(const char c)
     case '*':
         return STAR;
     default:
-        break;
+        return ERROR;
     }
 }
 
@@ -84,6 +84,7 @@ int scan_tokens(char *source)
         Token *t = create_token();
         
         t->type = get_token_type(*source);
+        if (t->type == ERROR)
         t->lexeme = source;
         t->length = 1;
         t->lieteral = NULL;
