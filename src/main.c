@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "src/scanner.h"
+#include "scanner.h"
 
 char *read_file_contents(const char *filename);
 
