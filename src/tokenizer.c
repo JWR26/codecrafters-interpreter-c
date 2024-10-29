@@ -20,7 +20,7 @@ enum TokenType get_token_type(const char c)
 }
 
 const char* token_type_as_string(const enum TokenType type){
-    switch (c)
+    switch (type)
     {
     case LEFT_PAREN:
         return "LEFT_PAREN";
