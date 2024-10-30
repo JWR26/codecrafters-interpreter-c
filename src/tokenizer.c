@@ -260,7 +260,7 @@ int scan_tokens(TokenArray *a, char *source)
             ++temp;
             if (*temp == '/')
             {
-                while(*temp != '\n' || *temp != '\0')
+                while(*temp != '\n' && *temp != '\0')
                 {
                     ++temp;
                     ++source;
