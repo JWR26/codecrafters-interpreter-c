@@ -5,34 +5,43 @@ Token *create_token(void)
     return malloc(sizeof(Token));
 }
 
-enum TokenType get_token_type(const char c)
+void delete_token(Token *t)
 {
-    switch (c)
-    {
-    case '(':
-        return LEFT_PAREN;
-    case ')':
-        return RIGHT_PAREN;
-    case '{':
-        return LEFT_BRACE;
-    case '}':
-        return RIGHT_BRACE;
-    case ',':
-        return COMMA;
-    case '.':
-        return DOT;
-    case '-':
-        return MINUS;
-    case '+':
-        return PLUS;
-    case ';':
-        return SEMICOLON;
-    case '*':
-        return STAR;
-    default:
-        return ERROR;
-    }
+    free(t);
 }
+
+TokenArray *create_token_array(void)
+{
+    // create an array of tokens
+    TokenArray *a = (TokenArray *)malloc(sizeof(TokenArray));
+    if (a == NULL)
+    {
+        printf("memory allocation failed...\n");
+        exit(1);
+    }
+    //allocate memory for the tokens
+    a->array = (Token *)malloc(sizeof(Token) * DEFAULT_CAPACITY);
+
+    a->capacity = DEFAULT_CAPACITY;
+    a->size = 0;
+
+    return a;
+}
+
+
+void append(TokenArray *a, Token *t)
+{
+    // realloocate if necessary
+    if (a->size == a->capacity)
+    {
+        a->capacity *= 2;
+        a->array = realloc(a->array, a->capacity * sizeof(Token));
+    }
+    a->array[a->size] = t;
+    a->size++;
+    
+}
+
 
 const char* token_type_as_string(const enum TokenType type){
     switch (type)
@@ -84,6 +93,14 @@ void print_token(const Token *t)
     }
 }
 
+void print_token_array(const TokenArray *a)
+{
+    for(int i = 0; i < a->size; ++i)
+    {
+        print_token(a->array[i]);
+    }
+}
+
 int scan_tokens(char *source)
 {
     int current_line = 1;
@@ -92,12 +109,49 @@ int scan_tokens(char *source)
     while(*source)
     {
         Token *t = create_token();
-        
-        t->type = get_token_type(*source);
-        t->lexeme = source;
         t->length = 1;
+        t->lexeme = source;
         t->lieteral = NULL;
         t->line = current_line;
+        
+        switch (*source)
+        {
+        case '(':
+            t->type = LEFT_PAREN;
+        case ')':
+            t->type = RIGHT_PAREN;
+        case '{':
+            t->type = LEFT_BRACE;
+        case '}':
+            t->type = RIGHT_BRACE;
+        case ',':
+            t->type = COMMA;
+        case '.':
+            t->type =  DOT;
+        case '-':
+            t->type = MINUS;
+        case '+':
+            t->type = PLUS;
+        case ';':
+            t->type = SEMICOLON;
+        case '*':
+            t->type = STAR;
+        case '=':
+            char *temp = source;
+            ++temp;
+            if (*temp == '=')
+            {
+                t->type = EQUAL_EQUAL;
+                t->length = 2;
+                ++source;
+            }
+            else
+            {
+                t->type = EQUAL;
+            }
+        default:
+            t->type = ERROR;
+        }
 
         print_token(t);
 
