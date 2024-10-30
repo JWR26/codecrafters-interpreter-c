@@ -28,12 +28,10 @@ int main(int argc, char *argv[]) {
         char *file_contents = read_file_contents(argv[2]);
 
         // Uncomment this block to pass the first stage
-        if (strlen(file_contents) > 0) {
-            TokenArray *tokens = create_token_array();
-            exit_code = scan_tokens(tokens, file_contents);
-            print_token_array(tokens);
-            delete_token_array(tokens);
-        } 
+        TokenArray *tokens = create_token_array();
+        exit_code = scan_tokens(tokens, file_contents);
+        print_token_array(tokens);
+        delete_token_array(tokens);
 
         free(file_contents);
     } else {
