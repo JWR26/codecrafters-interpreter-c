@@ -4,7 +4,15 @@ const size_t DEFAULT_ARRAY_CAPACITY = 4096;
 
 Token *create_token(void)
 {
-    return malloc(sizeof(Token));
+    Token *t = (Token *)malloc(sizeof(Token));
+    
+    if (t == NULL)
+    {
+        printf("Token memory allocation failed...\n");
+        exit(1);
+    }
+
+    return t;
 }
 
 void delete_token(Token *t)
@@ -85,6 +93,14 @@ const char* token_type_as_string(const enum TokenType type){
         return "BANG";
     case BANG_EQUAL:
         return "BANG_EQUAL";
+    case LESS:
+        return "LESS";
+    case LESS_EQUAL:
+        return "LESS_EQUAL";
+    case GREATER:
+        return "GREATER";
+    case GREATER_EQUAL:
+        return "GREATER_EQUAL";
     case END_OF_FILE:
         return "EOF";
     case ERROR:
@@ -192,6 +208,32 @@ int scan_tokens(TokenArray *a, char *source)
             else
             {
                 t->type = BANG;
+            }
+            break;
+        case '<':
+            ++temp;
+            if (*temp == '=')
+            {
+                t->type = LESS_EQUAL;
+                t->length = 2;
+                ++source;
+            }
+            else
+            {
+                t->type = LESS;
+            }
+            break;
+        case '>':
+            ++temp;
+            if (*temp == '=')
+            {
+                t->type = GREATER_EQUAL;
+                t->length = 2;
+                ++source;
+            }
+            else
+            {
+                t->type = GREATER;
             }
             break;
         default:

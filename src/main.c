@@ -22,12 +22,10 @@ int main(int argc, char *argv[]) {
     const char *command = argv[1];
 
     if (strcmp(command, "tokenize") == 0) {
-        // You can use print statements as follows for debugging, they'll be visible when running tests.
         fprintf(stderr, "Logs from your program will appear here!\n");
         
         char *file_contents = read_file_contents(argv[2]);
 
-        // Uncomment this block to pass the first stage
         TokenArray *tokens = create_token_array();
         exit_code = scan_tokens(tokens, file_contents);
         print_token_array(tokens);
