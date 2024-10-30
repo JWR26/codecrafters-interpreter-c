@@ -57,6 +57,8 @@ const char* token_type_as_string(const enum TokenType type){
         return "SEMICOLON";
     case STAR:
         return "STAR";
+    case ERROR:
+        return "Error";
     default:
         break;
     }
@@ -64,6 +66,11 @@ const char* token_type_as_string(const enum TokenType type){
 
 void print_token(const Token *t)
 {
+    if(t->type == ERROR)
+    {
+        printf("[Line %i] Error: Unexpected character: %c", t->line, t->lexeme[0]);
+        return
+    }
     printf(token_type_as_string(t->type));
     printf(" ");
     for(int i = 0; i < t->length; ++i)
@@ -79,21 +86,29 @@ void print_token(const Token *t)
 
 int scan_tokens(char *source)
 {
+    int current_line = 1;
+    int exit_code = 0;
+
     while(*source)
     {
         Token *t = create_token();
         
         t->type = get_token_type(*source);
-        if (t->type == ERROR)
         t->lexeme = source;
         t->length = 1;
         t->lieteral = NULL;
+        t->line = current_line;
 
         print_token(t);
+
+        if(t->type == ERROR)
+        {
+            exit_code = 65;
+        }
 
         source++;
     }
 
     printf("EOF  null\n");
-    return 0;
+    return exit_code;
 }
