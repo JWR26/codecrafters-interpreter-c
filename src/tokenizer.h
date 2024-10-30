@@ -7,23 +7,6 @@
 
 const size_t DEFAULT_CAPACITY = 4096;
 
-typedef struct Token{
-    enum TokenType type;
-    char *lexeme; // pointer to first character of the lexeme
-    char *lieteral;
-    int line;
-    int length; // length of the lexeme defaults to single character
-} Token;
-
-
-typedef struct {
-    size_t capacity; // arbiratry large array capacity to avoid resizing on every call
-    size_t size; // will start empty
-    Token **array;
-} TokenArray;
-
-
-
 
 enum TokenType{
     // Character tokens
@@ -42,6 +25,22 @@ enum TokenType{
     
     ERROR,
 };
+
+
+typedef struct Token{
+    enum TokenType type;
+    char *lexeme; // pointer to first character of the lexeme
+    char *lieteral;
+    int line;
+    int length; // length of the lexeme defaults to single character
+} Token;
+
+
+typedef struct {
+    size_t capacity; // arbiratry large array capacity to avoid resizing on every call
+    size_t size; // will start empty
+    Token **array;
+} TokenArray;
 
 
 Token *create_token(void);
