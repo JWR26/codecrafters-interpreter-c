@@ -32,6 +32,7 @@ int main(int argc, char *argv[]) {
             exit_code = scan_tokens(file_contents);
         } 
 
+        printf("EOF  null\n");
         free(file_contents);
     } else {
         fprintf(stderr, "Unknown command: %s\n", command);

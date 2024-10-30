@@ -109,6 +109,5 @@ int scan_tokens(char *source)
         source++;
     }
 
-    printf("EOF  null\n");
     return exit_code;
 }
