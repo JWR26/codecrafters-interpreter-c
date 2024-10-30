@@ -120,24 +120,34 @@ int scan_tokens(char *source)
         {
         case '(':
             t->type = LEFT_PAREN;
+            break;
         case ')':
             t->type = RIGHT_PAREN;
+            break;
         case '{':
             t->type = LEFT_BRACE;
+            break;
         case '}':
             t->type = RIGHT_BRACE;
+            break;
         case ',':
             t->type = COMMA;
+            break;
         case '.':
             t->type =  DOT;
+            break;
         case '-':
             t->type = MINUS;
+            break;
         case '+':
             t->type = PLUS;
+            break;
         case ';':
             t->type = SEMICOLON;
+            break;
         case '*':
             t->type = STAR;
+            break;
         case '=':
             char *temp = source;
             ++temp;
@@ -151,6 +161,7 @@ int scan_tokens(char *source)
             {
                 t->type = EQUAL;
             }
+            break;
         default:
             t->type = ERROR;
         }
