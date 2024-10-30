@@ -20,7 +20,10 @@ enum TokenType{
     STAR,
     EQUAL,
     EQUAL_EQUAL,
+    BANG,
+    BANG_EQUAL,
     
+    END_OF_FILE,
     ERROR,
 };
 
@@ -47,6 +50,8 @@ void delete_token(Token *t);
 
 TokenArray *create_token_array(void);
 
+void delete_token_array(TokenArray *a);
+
 void append(TokenArray *array, Token *t);
 
 const char* token_type_as_string(const enum TokenType type);
@@ -55,6 +60,6 @@ void print_token(const Token *t);
 
 void print_token_array(const TokenArray *a);
 
-int scan_tokens(char *source);
+int scan_tokens(TokenArray *a, char *source);
 
 #endif

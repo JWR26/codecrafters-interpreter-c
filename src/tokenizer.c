@@ -30,6 +30,15 @@ TokenArray *create_token_array(void)
     return a;
 }
 
+void delete_token_array(TokenArray *a)
+{
+    for(int i = 0; i < a->size; ++i)
+    {
+        delete_token(a->array[i]);
+    }
+    free(a);
+}
+
 
 void append(TokenArray *a, Token *t)
 {
@@ -72,6 +81,12 @@ const char* token_type_as_string(const enum TokenType type){
         return "EQUAL";
     case EQUAL_EQUAL:
         return "EQUAL_EQUAL";
+    case BANG:
+        return "BANG";
+    case BANG_EQUAL:
+        return "BANG_EQUAL";
+    case END_OF_FILE:
+        return "EOF";
     case ERROR:
         return "Error";
     default:
@@ -86,8 +101,7 @@ void print_token(const Token *t)
         fprintf(stderr, "[line %d] Error: Unexpected character: %c\n", t->line, t->lexeme[0]);
         return;
     }
-    printf(token_type_as_string(t->type));
-    printf(" ");
+    printf("%s ", token_type_as_string(t->type));
     for(int i = 0; i < t->length; ++i)
     {
         printf("%c", t->lexeme[i]);
@@ -107,7 +121,7 @@ void print_token_array(const TokenArray *a)
     }
 }
 
-int scan_tokens(char *source)
+int scan_tokens(TokenArray *a, char *source)
 {
     int current_line = 1;
     int exit_code = 0;
@@ -166,19 +180,36 @@ int scan_tokens(char *source)
                 t->type = EQUAL;
             }
             break;
+        case '!':
+            char *temp = source;
+            ++temp;
+            if (*temp == '=')
+            {
+                t->type = BANG_EQUAL;
+                t->length = 2;
+                ++source;
+            }
+            else
+            {
+                t->type = BANG;
+            }
+            break;
         default:
             t->type = ERROR;
-        }
-
-        print_token(t);
-
-        if(t->type == ERROR)
-        {
             exit_code = 65;
         }
 
+        append(a, t);
         source++;
     }
+
+    Token *t = create_token();
+    t->type = END_OF_FILE;
+    t->lexeme = source;
+    t->lieteral = NULL;
+    t->length = 0;
+
+    append(a, t);
 
     return exit_code;
 }

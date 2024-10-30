@@ -29,10 +29,12 @@ int main(int argc, char *argv[]) {
 
         // Uncomment this block to pass the first stage
         if (strlen(file_contents) > 0) {
-            exit_code = scan_tokens(file_contents);
+            TokenArray *tokens = create_token_array();
+            exit_code = scan_tokens(tokens, file_contents);
+            print_token_array(tokens);
+            delete_token_array(tokens);
         } 
 
-        printf("EOF  null\n");
         free(file_contents);
     } else {
         fprintf(stderr, "Unknown command: %s\n", command);
