@@ -260,7 +260,11 @@ int scan_tokens(TokenArray *a, char *source)
             ++temp;
             if (*temp == '/')
             {
-                goto loopend;
+                while(*temp != '\n' || *temp != '\0')
+                {
+                    ++temp;
+                    ++source;
+                }
             }
             else
             {
@@ -274,10 +278,9 @@ int scan_tokens(TokenArray *a, char *source)
             exit_code = 65;
         }
 
+        
         source++;
     }
-
-    loopend: ;
     
     Token *t = create_token();
     t->type = END_OF_FILE;
