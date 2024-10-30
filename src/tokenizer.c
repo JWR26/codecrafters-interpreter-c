@@ -68,7 +68,7 @@ void print_token(const Token *t)
 {
     if(t->type == ERROR)
     {
-        fprintf(stderr, "[Line %i] Error: Unexpected character: %c", t->line, t->lexeme[0]);
+        fprintf(stderr, "[line %d] Error: Unexpected character: %c\n", t->line, t->lexeme[0]);
         return;
     }
     printf(token_type_as_string(t->type));
