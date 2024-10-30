@@ -262,8 +262,8 @@ int scan_tokens(TokenArray *a, char *source)
             {
                 while(*temp != '\n')
                 {
-                    ++source;
                     ++temp;
+                    fprintf(stderr, "upping the temp because it is %c", *temp);
                 }
             }
             else
