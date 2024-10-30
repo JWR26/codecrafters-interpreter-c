@@ -68,6 +68,10 @@ const char* token_type_as_string(const enum TokenType type){
         return "SEMICOLON";
     case STAR:
         return "STAR";
+    case EQUAL:
+        return "EQUAL";
+    case EQUAL_EQUAL:
+        return "EQUAL_EQUAL";
     case ERROR:
         return "Error";
     default:
