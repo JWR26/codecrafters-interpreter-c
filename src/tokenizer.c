@@ -260,11 +260,7 @@ int scan_tokens(TokenArray *a, char *source)
             ++temp;
             if (*temp == '/')
             {
-                while(*source != '\n' || *source)
-                {
-                    ++source;
-                    fprintf(stderr, "upping the source because it is %c\n", *temp);
-                }
+                goto loopend;
             }
             else
             {
@@ -281,6 +277,8 @@ int scan_tokens(TokenArray *a, char *source)
         source++;
     }
 
+    loopend: ;
+    
     Token *t = create_token();
     t->type = END_OF_FILE;
     t->lexeme = source;
