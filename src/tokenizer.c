@@ -242,7 +242,7 @@ int scan_tokens(TokenArray *a, char *source)
             ++temp;
             if (*temp == '/')
             {
-                break;
+                return 2;
             }
             else
             {
