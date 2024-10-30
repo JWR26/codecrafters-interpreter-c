@@ -265,6 +265,10 @@ int scan_tokens(TokenArray *a, char *source)
                     ++temp;
                     ++source;
                 }
+                if (*temp == '\n')
+                {
+                    ++current_line;
+                }
             }
             else
             {
@@ -272,13 +276,18 @@ int scan_tokens(TokenArray *a, char *source)
                 append(a, t);
             }
             break;
+        case ' ':
+        case '\r':
+        case '\t':
+            break;
+        case '\n':
+            ++current_line;
         default:
             t->type = ERROR;
             append(a, t);
             exit_code = 65;
         }
 
-        
         source++;
     }
     
