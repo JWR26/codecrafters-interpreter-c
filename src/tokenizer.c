@@ -1,5 +1,7 @@
 #include "tokenizer.h"
 
+const size_t DEFAULT_ARRAY_CAPACITY = 4096;
+
 Token *create_token(void)
 {
     return malloc(sizeof(Token));
