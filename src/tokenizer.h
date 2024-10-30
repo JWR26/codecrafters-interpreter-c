@@ -5,8 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-const size_t DEFAULT_ARRAY_CAPACITY = 4096;
-
 
 enum TokenType{
     // Character tokens
