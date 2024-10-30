@@ -242,10 +242,7 @@ int scan_tokens(TokenArray *a, char *source)
             ++temp;
             if (*temp == '/')
             {
-                while(*source != '\n')
-                {
-                    ++source;
-                }
+                t->type = SLASH;
             }
             else
             {
@@ -257,7 +254,7 @@ int scan_tokens(TokenArray *a, char *source)
             exit_code = 65;
         }
 
-        append(a, t);
+
         source++;
     }
 
