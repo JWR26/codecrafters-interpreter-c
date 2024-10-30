@@ -260,10 +260,10 @@ int scan_tokens(TokenArray *a, char *source)
             ++temp;
             if (*temp == '/')
             {
-                while(*temp != '\n' || *temp)
+                while(*source != '\n' || *source)
                 {
-                    ++temp;
-                    fprintf(stderr, "upping the temp because it is %c", *temp);
+                    ++source;
+                    fprintf(stderr, "upping the source because it is %c\n", *temp);
                 }
             }
             else
