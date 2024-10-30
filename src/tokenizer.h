@@ -1,6 +1,7 @@
 #ifndef TOKENIZER
 #define TOKENIZER
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -26,6 +27,7 @@ enum TokenType{
     LESS_EQUAL,
     GREATER,
     GREATER_EQUAL,
+    SLASH,
     
     END_OF_FILE,
     ERROR,

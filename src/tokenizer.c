@@ -101,6 +101,8 @@ const char* token_type_as_string(const enum TokenType type){
         return "GREATER";
     case GREATER_EQUAL:
         return "GREATER_EQUAL";
+    case SLASH:
+        return "SLASH";
     case END_OF_FILE:
         return "EOF";
     case ERROR:
@@ -142,7 +144,9 @@ int scan_tokens(TokenArray *a, char *source)
     int current_line = 1;
     int exit_code = 0;
 
-    while(*source)
+    bool loop = true;
+
+    while(*source && loop)
     {
         Token *t = create_token();
         t->length = 1;
@@ -234,6 +238,17 @@ int scan_tokens(TokenArray *a, char *source)
             else
             {
                 t->type = GREATER;
+            }
+            break;
+        case '/':
+            ++temp;
+            if (*temp == '/')
+            {
+                loop = false;
+            }
+            else
+            {
+                t->type = SLASH;
             }
             break;
         default:
