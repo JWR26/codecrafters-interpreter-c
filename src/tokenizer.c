@@ -158,33 +158,43 @@ int scan_tokens(TokenArray *a, char *source)
         {
         case '(':
             t->type = LEFT_PAREN;
+            append(a, t);
             break;
         case ')':
             t->type = RIGHT_PAREN;
+            append(a, t);
             break;
         case '{':
             t->type = LEFT_BRACE;
+            append(a, t);
             break;
         case '}':
             t->type = RIGHT_BRACE;
+            append(a, t);
             break;
         case ',':
             t->type = COMMA;
+            append(a, t);
             break;
         case '.':
             t->type =  DOT;
+            append(a, t);
             break;
         case '-':
             t->type = MINUS;
+            append(a, t);
             break;
         case '+':
             t->type = PLUS;
+            append(a, t);
             break;
         case ';':
             t->type = SEMICOLON;
+            append(a, t);
             break;
         case '*':
             t->type = STAR;
+            append(a, t);
             break;
         case '=':
             ++temp;
@@ -193,10 +203,12 @@ int scan_tokens(TokenArray *a, char *source)
                 t->type = EQUAL_EQUAL;
                 t->length = 2;
                 ++source;
+                append(a, t);
             }
             else
             {
                 t->type = EQUAL;
+                append(a, t);
             }
             break;
         case '!':
@@ -206,10 +218,12 @@ int scan_tokens(TokenArray *a, char *source)
                 t->type = BANG_EQUAL;
                 t->length = 2;
                 ++source;
+                append(a, t);
             }
             else
             {
                 t->type = BANG;
+                append(a, t);
             }
             break;
         case '<':
@@ -219,10 +233,12 @@ int scan_tokens(TokenArray *a, char *source)
                 t->type = LESS_EQUAL;
                 t->length = 2;
                 ++source;
+                append(a, t);
             }
             else
             {
                 t->type = LESS;
+                append(a, t);
             }
             break;
         case '>':
@@ -232,29 +248,36 @@ int scan_tokens(TokenArray *a, char *source)
                 t->type = GREATER_EQUAL;
                 t->length = 2;
                 ++source;
+                append(a, t);
             }
             else
             {
                 t->type = GREATER;
+                append(a, t);
             }
             break;
         case '/':
             ++temp;
             if (*temp == '/')
             {
-                t->type = SLASH;
+                while(*temp != '\n')
+                {
+                    ++source;
+                    ++temp;
+                }
             }
             else
             {
                 t->type = SLASH;
+                append(a, t);
             }
             break;
         default:
             t->type = ERROR;
+            append(a, t);
             exit_code = 65;
         }
 
-        append(a, t);
         source++;
     }
 
