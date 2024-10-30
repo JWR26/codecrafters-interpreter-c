@@ -282,6 +282,7 @@ int scan_tokens(TokenArray *a, char *source)
             break;
         case '\n':
             ++current_line;
+            break;
         default:
             t->type = ERROR;
             append(a, t);
