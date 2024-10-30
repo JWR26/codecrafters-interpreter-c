@@ -20,7 +20,7 @@ TokenArray *create_token_array(void)
         exit(1);
     }
     //allocate memory for the tokens
-    a->array = (Token *)malloc(sizeof(Token *) * DEFAULT_CAPACITY);
+    a->array = (Token **)malloc(sizeof(Token *) * DEFAULT_CAPACITY);
 
     a->capacity = DEFAULT_CAPACITY;
     a->size = 0;
