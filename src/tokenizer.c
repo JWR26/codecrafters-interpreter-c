@@ -144,9 +144,7 @@ int scan_tokens(TokenArray *a, char *source)
     int current_line = 1;
     int exit_code = 0;
 
-    bool loop = true;
-
-    while(*source && loop)
+    while(*source)
     {
         Token *t = create_token();
         t->length = 1;
@@ -244,7 +242,7 @@ int scan_tokens(TokenArray *a, char *source)
             ++temp;
             if (*temp == '/')
             {
-                loop = false;
+                break;
             }
             else
             {
