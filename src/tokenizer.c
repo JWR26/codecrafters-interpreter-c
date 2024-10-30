@@ -265,10 +265,6 @@ int scan_tokens(TokenArray *a, char *source)
                     ++temp;
                     ++source;
                 }
-                if (*temp == '\n')
-                {
-                    ++current_line;
-                }
             }
             else
             {
