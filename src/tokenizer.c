@@ -134,6 +134,8 @@ int scan_tokens(TokenArray *a, char *source)
         t->lieteral = NULL;
         t->line = current_line;
         
+        char *temp = source; // temporary pointer for peeking forward
+
         switch (*source)
         {
         case '(':
@@ -167,7 +169,6 @@ int scan_tokens(TokenArray *a, char *source)
             t->type = STAR;
             break;
         case '=':
-            char *temp = source;
             ++temp;
             if (*temp == '=')
             {
@@ -181,7 +182,6 @@ int scan_tokens(TokenArray *a, char *source)
             }
             break;
         case '!':
-            char *temp = source;
             ++temp;
             if (*temp == '=')
             {
