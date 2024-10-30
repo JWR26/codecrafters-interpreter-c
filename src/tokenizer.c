@@ -254,7 +254,7 @@ int scan_tokens(TokenArray *a, char *source)
             exit_code = 65;
         }
 
-
+        append(a, t);
         source++;
     }
 
