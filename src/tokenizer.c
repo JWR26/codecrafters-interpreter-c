@@ -123,7 +123,7 @@ void print_token(const Token *t)
     printf(" ");
     if (t->string != NULL)
     {
-        printf("%s\n", t->string);
+        printf("%s", t->string);
     }
     else
     {
@@ -328,5 +328,5 @@ int scan_tokens(TokenArray *a, char *source)
 
 void log_error(int line, char *msg)
 {
-    fprintf(stderr, "[line %d] Error: %s\n", line, msg);
+    fprintf(stderr, "[line %d] Error: %s", line, msg);
 }
