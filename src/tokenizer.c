@@ -308,7 +308,9 @@ int scan_tokens(TokenArray *a, char *source)
             source = temp;
             break;
         default:
-            log_error(current_line, "Unexpected character: " + *source);
+            char *error = "Unexpected character: .";
+            error[2] = *source;
+            log_error(current_line, error);
             exit_code = 65;
         }
 
