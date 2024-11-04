@@ -302,7 +302,7 @@ int scan_tokens(TokenArray *a, char *source)
                 t->type = STRING;
                 t->lexeme = source;
                 int l = (temp - source);
-                t->length = l;
+                t->length = l+1;
                 t->string = (char *)malloc(l * sizeof(char));
                 strncpy(t->string, source+1, l-1);
                 t->string[l-1] = '\n';
