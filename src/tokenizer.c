@@ -123,7 +123,7 @@ void print_token(const Token *t)
     printf(" ");
     if (t->string != NULL)
     {
-        printf("%s", t->string);
+        printf("%s\n", t->string);
     }
     else
     {
