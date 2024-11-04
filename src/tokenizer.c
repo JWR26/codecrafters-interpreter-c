@@ -316,9 +316,13 @@ int scan_tokens(TokenArray *a, char *source)
 
         source++;
     }
+
     Token *t = create_token();
     t->type = END_OF_FILE;
     t->length = 0;
+    t->lexeme = source;
+    t->line = current_line;
+    t->string = NULL;
 
     append(a, t);
 
