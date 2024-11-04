@@ -321,7 +321,6 @@ int scan_tokens(TokenArray *a, char *source)
     
     Token *t = create_token();
     t->type = END_OF_FILE;
-    t->lexeme = source;
     t->length = 0;
 
     append(a, t);
