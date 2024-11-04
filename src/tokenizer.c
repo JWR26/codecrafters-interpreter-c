@@ -103,6 +103,8 @@ const char* token_type_as_string(const enum TokenType type){
         return "GREATER_EQUAL";
     case SLASH:
         return "SLASH";
+    case STRING:
+        return "STRING";
     case END_OF_FILE:
         return "EOF";
     default:
@@ -281,13 +283,19 @@ int scan_tokens(TokenArray *a, char *source)
                     ++current_line;
                 }
 
-                if (*temp == '\0')
-                {
-                    log_error(current_line, "Unterminated string.");
-                    exit_code = 65;
-                }
                 ++temp;
             }
+            if (*temp == '\0')
+            {
+                log_error(current_line, "Unterminated string.");
+                exit_code = 65;
+            }
+            if (*temp == '"')
+            {
+                t->type = STRING;
+
+            }
+
         default:
             log_error(current_line, "Unexpected character: " + *source);
         }
