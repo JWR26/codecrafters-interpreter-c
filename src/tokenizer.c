@@ -117,7 +117,7 @@ void print_token(const Token *t)
     printf("%s ", token_type_as_string(t->type));
     for(int i = 0; i < t->length; ++i)
     {
-        printf("%c", t->lexeme[i]);
+        printf("%c ", t->lexeme[i]);
     }
     printf(" ");
     if (t->string != NULL)
@@ -154,7 +154,6 @@ int scan_tokens(TokenArray *a, char *source)
         t->lexeme = source;
         t->line = current_line;
         t->string = NULL;
-        t->number = NULL
         
         char *temp = source; // temporary pointer for peeking forward
 
