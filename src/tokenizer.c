@@ -294,6 +294,7 @@ int scan_tokens(TokenArray *a, char *source)
             {
                 t->type = STRING;
                 ++source;
+                append(a, t);
             }
             break;
         default:
