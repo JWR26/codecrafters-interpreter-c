@@ -125,10 +125,6 @@ void print_token(const Token *t)
     {
         printf("%s", t->string);
     }
-    else if (t->number)
-    {
-        printf("%d", t->number);
-    }
     else
     {
         printf("null\n");
