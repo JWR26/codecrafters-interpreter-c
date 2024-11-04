@@ -306,7 +306,6 @@ int scan_tokens(TokenArray *a, char *source)
                 strncpy(t->string, source+1, l-1);
                 append(a, t);
             }
-            source = temp -1;
             break;
         default:
             log_error(current_line, "Unexpected character: " + *source);
