@@ -295,7 +295,7 @@ int scan_tokens(TokenArray *a, char *source)
                 t->type = STRING;
 
             }
-
+            break;
         default:
             log_error(current_line, "Unexpected character: " + *source);
         }
