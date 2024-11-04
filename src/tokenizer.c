@@ -296,6 +296,7 @@ int scan_tokens(TokenArray *a, char *source)
             if (*temp == '\0')
             {
                 log_error(current_line, "Unterminated string.");
+                --temp;
                 exit_code = 65;
             }
             if (*temp == '"')
@@ -308,8 +309,8 @@ int scan_tokens(TokenArray *a, char *source)
                 strncpy(t->string, source+1, l-1);
                 t->string[l-1] = '\n';
                 append(a, t);
-                source = temp;
             }
+            source = temp;
             break;
         default:
             log_error(current_line, "Unexpected character: " + *source);
