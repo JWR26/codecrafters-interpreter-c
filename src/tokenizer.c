@@ -282,8 +282,8 @@ int scan_tokens(TokenArray *a, char *source)
                 {
                     ++current_line;
                 }
-
                 ++temp;
+                ++source;
             }
             if (*temp == '\0')
             {
@@ -298,6 +298,7 @@ int scan_tokens(TokenArray *a, char *source)
             break;
         default:
             log_error(current_line, "Unexpected character: " + *source);
+            exit_code = 65;
         }
 
         source++;
