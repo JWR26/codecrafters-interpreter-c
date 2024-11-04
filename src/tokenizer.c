@@ -120,7 +120,15 @@ void print_token(const Token *t)
         printf("%c", t->lexeme[i]);
     }
     printf(" ");
-    if (t->lieteral == NULL)
+    if (t->string != NULL)
+    {
+        printf("%s", t->string);
+    }
+    else if (t->number)
+    {
+        printf("%d", t->number);
+    }
+    else
     {
         printf("null\n");
     }
@@ -144,8 +152,9 @@ int scan_tokens(TokenArray *a, char *source)
         Token *t = create_token();
         t->length = 1;
         t->lexeme = source;
-        t->lieteral = NULL;
         t->line = current_line;
+        t->string = NULL;
+        t->number = NULL
         
         char *temp = source; // temporary pointer for peeking forward
 
@@ -283,17 +292,21 @@ int scan_tokens(TokenArray *a, char *source)
                     ++current_line;
                 }
                 ++temp;
-                ++source;
             }
             if (*temp == '\0')
             {
                 log_error(current_line, "Unterminated string.");
+                source = temp - 1;
                 exit_code = 65;
             }
             if (*temp == '"')
             {
                 t->type = STRING;
-                ++source;
+                t->lexeme = source;
+                int l = (source - temp);
+                t->string = (char *)malloc(l * sizeof(char));
+                strncpy(t->string, source+1, l-1);
+                source = temp;
                 append(a, t);
             }
             break;
@@ -308,7 +321,6 @@ int scan_tokens(TokenArray *a, char *source)
     Token *t = create_token();
     t->type = END_OF_FILE;
     t->lexeme = source;
-    t->lieteral = NULL;
     t->length = 0;
 
     append(a, t);

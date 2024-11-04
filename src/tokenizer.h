@@ -37,7 +37,12 @@ enum TokenType{
 typedef struct Token{
     enum TokenType type;
     char *lexeme; // pointer to first character of the lexeme
-    char *lieteral;
+    union
+    {
+        char *string;
+        double number;
+    };
+    
     int line;
     int length; // length of the lexeme defaults to single character
 } Token;
