@@ -296,6 +296,7 @@ int scan_tokens(TokenArray *a, char *source)
             {
                 log_error(current_line, "Unterminated string.");
                 exit_code = 65;
+                source = temp - 1;
             }
             if (*temp == '"')
             {
