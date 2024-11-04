@@ -293,7 +293,7 @@ int scan_tokens(TokenArray *a, char *source)
             if (*temp == '"')
             {
                 t->type = STRING;
-
+                ++source;
             }
             break;
         default:
