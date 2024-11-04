@@ -295,7 +295,6 @@ int scan_tokens(TokenArray *a, char *source)
             if (*temp == '\0')
             {
                 log_error(current_line, "Unterminated string.");
-                source = temp - 1;
                 exit_code = 65;
             }
             if (*temp == '"')
@@ -305,9 +304,9 @@ int scan_tokens(TokenArray *a, char *source)
                 int l = (source - temp);
                 t->string = (char *)malloc(l * sizeof(char));
                 strncpy(t->string, source+1, l-1);
-                source = temp - 1;
                 append(a, t);
             }
+            source = temp -1;
             break;
         default:
             log_error(current_line, "Unexpected character: " + *source);
