@@ -114,6 +114,7 @@ const char* token_type_as_string(const enum TokenType type){
 
 void print_token(const Token *t)
 {
+    printf("token out -> ");
     printf("%s ", token_type_as_string(t->type));
     for(int i = 0; i < t->length; ++i)
     {
