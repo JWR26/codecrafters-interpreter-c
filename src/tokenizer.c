@@ -307,7 +307,7 @@ int scan_tokens(TokenArray *a, char *source)
 }
 
 
-void log_error(int *line, char *msg)
+void log_error(int line, char *msg)
 {
     fprintf(stderr, "[line %d] Error: %s\n", line, msg);
 }
