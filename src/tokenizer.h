@@ -28,9 +28,9 @@ enum TokenType{
     GREATER,
     GREATER_EQUAL,
     SLASH,
+    STRING,
     
     END_OF_FILE,
-    ERROR,
 };
 
 
@@ -67,5 +67,7 @@ void print_token(const Token *t);
 void print_token_array(const TokenArray *a);
 
 int scan_tokens(TokenArray *a, char *source);
+
+void log_error(int *line, char *msg);
 
 #endif

@@ -105,8 +105,6 @@ const char* token_type_as_string(const enum TokenType type){
         return "SLASH";
     case END_OF_FILE:
         return "EOF";
-    case ERROR:
-        return "Error";
     default:
         break;
     }
@@ -114,11 +112,6 @@ const char* token_type_as_string(const enum TokenType type){
 
 void print_token(const Token *t)
 {
-    if(t->type == ERROR)
-    {
-        fprintf(stderr, "[line %d] Error: Unexpected character: %c\n", t->line, t->lexeme[0]);
-        return;
-    }
     printf("%s ", token_type_as_string(t->type));
     for(int i = 0; i < t->length; ++i)
     {
@@ -279,10 +272,24 @@ int scan_tokens(TokenArray *a, char *source)
         case '\n':
             ++current_line;
             break;
+        case '"':
+            ++temp;
+            while(*temp != '"' && *temp != '\0')
+            {
+                if(*temp == '\n')
+                {
+                    ++current_line;
+                }
+
+                if (*temp == '\0')
+                {
+                    log_error(current_line, "Unterminated string.");
+                    exit_code = 65;
+                }
+                ++temp;
+            }
         default:
-            t->type = ERROR;
-            append(a, t);
-            exit_code = 65;
+            log_error(current_line, "Unexpected character: " + *source);
         }
 
         source++;
@@ -297,4 +304,10 @@ int scan_tokens(TokenArray *a, char *source)
     append(a, t);
 
     return exit_code;
+}
+
+
+void log_error(int *line, char *msg)
+{
+    fprintf(stderr, "[line %d] Error: %s\n", line, msg);
 }
