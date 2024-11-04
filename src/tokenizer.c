@@ -114,7 +114,6 @@ const char* token_type_as_string(const enum TokenType type){
 
 void print_token(const Token *t)
 {
-    fprintf(stderr, "token out -> ");
     printf("%s ", token_type_as_string(t->type));
     for(int i = 0; i < t->length; ++i)
     {
@@ -123,7 +122,7 @@ void print_token(const Token *t)
     printf(" ");
     if (t->string != NULL)
     {
-        printf("%s", t->string);
+        printf("%s\n", t->string);
     }
     else
     {
@@ -315,7 +314,6 @@ int scan_tokens(TokenArray *a, char *source)
 
         source++;
     }
-    fprintf(stderr, "reached end of file");
     Token *t = create_token();
     t->type = END_OF_FILE;
     t->length = 0;
