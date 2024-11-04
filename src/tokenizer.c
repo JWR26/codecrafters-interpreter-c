@@ -303,7 +303,7 @@ int scan_tokens(TokenArray *a, char *source)
                 t->length = l+1;
                 t->string = (char *)malloc(l * sizeof(char));
                 strncpy(t->string, source+1, l-1);
-                t->string[l-1] = '\n';
+                t->string[l-1] = '\0';
                 append(a, t);
             }
             source = temp;
